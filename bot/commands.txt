@@ -1,0 +1,2 @@
+# Start bot as demon
+ssh root@62.217.176.238 "cd theatreBot/; export PYTHONPATH=~/theatreBot; python3.9 main.py"

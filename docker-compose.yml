@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+    bot:
+        image: theatrebot
+        build:
+            context: .
+            dockerfile: bot/Dockerfile
+        restart: always
+        networks:
+            - theatre
+        env_file:
+            - bot/.env_dist
+        volumes:
+            - ./my_db.db:/app/my_db.db
+            - ./media:/app/media
+            - ./.env_dist:/app/.env_dist
+            - ./resources:/app/resources
+
+#    nginx:
+#        build:
+#            context: nginx
+#            dockerfile: Dockerfile
+#        image: digitalocean.com/webserver:latest
+#        container_name: nginx
+#        environment:
+#            APP_DEBUG: "true"
+#        ports:
+#            - "80:80"
+#            - "443:443"
+#        volumes:
+#            - ./media:/app/media
+#        networks:
+#            - theatre
+
+
+networks:
+  theatre:
+    driver: bridge
